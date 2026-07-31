@@ -1,0 +1,32 @@
+# Decap CMS config — intentionally scoped to ONLY the menu.
+# The client should never see design, pages, or settings here —
+# just their menu items. See PROJECT_BRIEF.md for why.
+
+backend:
+  name: git-gateway
+  # DecapBridge stands in for Netlify's git-gateway here.
+  # Point this at your DecapBridge project once it's set up:
+  # https://decapbridge.com/docs
+  branch: main
+
+media_folder: "media"
+public_folder: "/media"
+
+collections:
+  - name: "menu"
+    label: "Menu"
+    label_singular: "Menu Item"
+    folder: "content/menu"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Dish name", name: "title", widget: "string" }
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["Smoked Meats", "Sandwiches", "Sides", "Drinks & Dessert"]
+      - { label: "Price", name: "price", widget: "string", hint: "Numbers only, e.g. 22" }
+      - { label: "Unit (optional)", name: "unit", widget: "string", required: false, hint: "e.g. 'per lb' or 'half rack' — leave blank if none" }
+      - { label: "Description", name: "description", widget: "text", required: false }
+      - { label: "Sort order within category", name: "order", widget: "number", default: 1 }

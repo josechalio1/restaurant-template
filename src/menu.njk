@@ -1,0 +1,33 @@
+---
+layout: base.njk
+title: Menu
+permalink: /menu/
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Today's board</p>
+      <h1>Menu</h1>
+      <p>Meats sold by the pound until they're gone. Ask what's still on the smoker.</p>
+    </div>
+
+    {% set grouped = collections.menu | groupByCategory %}
+    {% for category, items in grouped %}
+    <div class="menu-category">
+      <h2 class="menu-category__title">{{ category }}</h2>
+      {% for item in items %}
+      <div class="menu-row">
+        <div>
+          <div class="menu-row__name">{{ item.data.title }}</div>
+          {% if item.data.description %}
+          <div class="menu-row__desc">{{ item.data.description }}</div>
+          {% endif %}
+        </div>
+        <div class="menu-row__price">${{ item.data.price }}{% if item.data.unit %} <span>{{ item.data.unit }}</span>{% endif %}</div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
+  </div>
+</section>

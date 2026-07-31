@@ -1,0 +1,54 @@
+---
+layout: base.njk
+title: Contact
+permalink: /contact/
+---
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Get in touch</p>
+      <h1>Contact & directions</h1>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <h3>{{ site.businessName }}</h3>
+        <p>{{ site.address.street }}<br>{{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}</p>
+        <p><a href="tel:{{ site.phoneHref }}">{{ site.phoneDisplay }}</a></p>
+        <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+
+        <!--
+          Swap this iframe src for the client's real Google Maps embed URL
+          (Maps -> Share -> Embed a map -> copy the src). Stored in
+          site.googleMapsEmbedSrc so it's one config value, not buried here.
+        -->
+        <iframe class="contact-map" src="{{ site.googleMapsEmbedSrc }}" loading="lazy" title="Map to {{ site.businessName }}"></iframe>
+      </div>
+
+      <div>
+        <h3>Send a message</h3>
+        <p>For reservations of 8 or more, call ahead — the form is best for general questions.</p>
+        <!--
+          Replace this placeholder form with an embedded Google Form:
+          Google Forms -> Send -> Embed HTML -> paste the <iframe> here.
+          Submissions land directly in a Google Sheet, no backend needed.
+        -->
+        <form class="contact-form" action="#" method="post">
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required>
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" required>
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+          </div>
+          <button type="submit" class="btn btn--ticket">Send message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

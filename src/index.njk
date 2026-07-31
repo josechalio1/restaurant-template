@@ -1,0 +1,59 @@
+---
+layout: base.njk
+title: Home
+---
+
+<section class="hero">
+  {% if site.hero.type == "video" %}
+  <video class="hero__media" autoplay muted loop playsinline poster="{{ site.hero.poster }}">
+    <source src="{{ site.hero.video }}" type="video/mp4">
+  </video>
+  {% else %}
+  <img class="hero__media" src="{{ site.hero.image }}" alt="" role="presentation">
+  {% endif %}
+  <div class="hero__scrim"></div>
+
+  <div class="hero__ticket">
+    <p class="eyebrow hero__eyebrow">{{ site.tagline }}</p>
+    <h1 class="hero__headline">{{ site.hero.headline }}</h1>
+    <p class="hero__sub">{{ site.hero.sub }}</p>
+    <div class="hero__actions">
+      <a href="{{ site.orderLink }}" class="btn btn--ticket">Order online</a>
+      <a href="/menu/" class="btn btn--outline">See the menu</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap info-grid">
+    <div class="info-card">
+      <h3>Hours</h3>
+      <ul class="hours-list">
+        {% for h in site.hours %}
+        <li><span>{{ h.days }}</span><span>{{ h.time }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="info-card">
+      <h3>Find us</h3>
+      <p>{{ site.address.street }}<br>{{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}</p>
+      <p><a href="tel:{{ site.phoneHref }}">{{ site.phoneDisplay }}</a></p>
+    </div>
+    <div class="info-card">
+      <h3>Reservations</h3>
+      <p>Large parties and private events welcome.</p>
+      <a href="{{ site.reserveLink }}" class="btn btn--outline">Reserve a table</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">From the pit</p>
+      <h2>Fourteen hours, give or take</h2>
+      <p>Every brisket goes on before sunrise and comes off when it's ready, not when the clock says so. That's the whole method — post oak, low heat, and a lot of patience.</p>
+    </div>
+    <a href="/about/" class="btn btn--outline">Our story</a>
+  </div>
+</section>

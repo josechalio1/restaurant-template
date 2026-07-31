@@ -1,0 +1,21 @@
+<header class="site-header">
+  <div class="wrap site-header__row">
+    <a href="/" class="site-header__mark">
+      <span class="site-header__name">{{ site.shortName }}</span>
+      <span class="site-header__est">Est. Smokehouse</span>
+    </a>
+    <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="sr-only">Menu</span>
+    </button>
+    <nav class="site-nav" id="site-nav" aria-label="Primary">
+      <a href="/menu/">Menu</a>
+      <a href="/about/">About</a>
+      <a href="/gallery/">Gallery</a>
+      <a href="/contact/">Contact</a>
+      <a href="{{ site.orderLink }}" class="btn btn--ticket">Order</a>
+    </nav>
+  </div>
+</header>

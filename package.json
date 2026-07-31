@@ -1,0 +1,13 @@
+{
+  "name": "restaurant-site-template",
+  "version": "1.0.0",
+  "description": "Reusable restaurant/small-business website template with Decap CMS-editable menu.",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "gray-matter": "^4.0.3"
+  }
+}

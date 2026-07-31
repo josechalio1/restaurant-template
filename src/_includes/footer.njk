@@ -1,0 +1,23 @@
+<footer class="site-footer">
+  <div class="wrap site-footer__grid">
+    <div>
+      <p class="site-footer__name">{{ site.businessName }}</p>
+      <p>{{ site.address.street }}<br>{{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}</p>
+      <p><a href="tel:{{ site.phoneHref }}">{{ site.phoneDisplay }}</a></p>
+    </div>
+    <div>
+      <p class="site-footer__label">Hours</p>
+      <ul class="hours-list">
+        {% for h in site.hours %}
+        <li><span>{{ h.days }}</span><span>{{ h.time }}</span></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <p class="site-footer__label">Follow</p>
+      <p><a href="{{ site.social.instagram }}">Instagram</a></p>
+      <p><a href="{{ site.social.facebook }}">Facebook</a></p>
+    </div>
+  </div>
+  <p class="site-footer__fine wrap">&copy; {{ currentYear }} {{ site.businessName }}</p>
+</footer>

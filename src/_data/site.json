@@ -1,0 +1,46 @@
+{
+  "businessName": "Hollow Oak Smokehouse",
+  "shortName": "Hollow Oak",
+  "tagline": "Wood-fired since 2014",
+  "cuisine": "Barbecue",
+  "priceRange": "$$",
+  "phoneDisplay": "(512) 555-0148",
+  "phoneHref": "+15125550148",
+  "email": "hello@hollowoaksmokehouse.example",
+  "address": {
+    "street": "412 Kiln Street",
+    "city": "Millbrook",
+    "state": "TX",
+    "zip": "78660"
+  },
+  "hours": [
+    { "days": "Tue–Fri", "time": "11:00 AM – 8:00 PM" },
+    { "days": "Sat", "time": "11:00 AM – 9:00 PM" },
+    { "days": "Sun", "time": "11:00 AM – 4:00 PM" },
+    { "days": "Mon", "time": "Closed" }
+  ],
+  "hoursSchema": [
+    { "day": "Tuesday", "opens": "11:00", "closes": "20:00" },
+    { "day": "Wednesday", "opens": "11:00", "closes": "20:00" },
+    { "day": "Thursday", "opens": "11:00", "closes": "20:00" },
+    { "day": "Friday", "opens": "11:00", "closes": "20:00" },
+    { "day": "Saturday", "opens": "11:00", "closes": "21:00" },
+    { "day": "Sunday", "opens": "11:00", "closes": "16:00" }
+  ],
+  "social": {
+    "instagram": "https://instagram.com/hollowoaksmokehouse",
+    "facebook": "https://facebook.com/hollowoaksmokehouse"
+  },
+  "hero": {
+    "type": "image",
+    "image": "/media/hero.jpg",
+    "video": "/media/hero.mp4",
+    "poster": "/media/hero-poster.jpg",
+    "headline": "Low. Slow. Worth the wait.",
+    "sub": "Post oak smoked meats and family recipes. No shortcuts."
+  },
+  "menuCategoryOrder": ["Smoked Meats", "Sandwiches", "Sides", "Drinks & Dessert"],
+  "orderLink": "#",
+  "reserveLink": "#",
+  "googleMapsEmbedSrc": "REPLACE_WITH_CLIENT_MAPS_EMBED_URL"
+}
