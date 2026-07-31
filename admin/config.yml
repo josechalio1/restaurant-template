@@ -9,6 +9,11 @@ backend:
   # https://decapbridge.com/docs
   branch: main
 
+# Only takes effect when the admin panel is opened on localhost — lets you
+# test the editor against this local git repo (via `npx decap-server`)
+# without any real auth provider. Ignored in production.
+local_backend: true
+
 media_folder: "media"
 public_folder: "/media"
 
