@@ -4,13 +4,16 @@ A placeholder restaurant built as a reusable template. Static site (Eleventy)
 with a menu that the client can edit themselves through Decap CMS, without
 touching code.
 
-## ⚠️ Important: this has not been build-tested yet
+## Status: build-tested, runs locally, Decap CMS verified
 
-This was written in an environment with no internet access, so `npm install`
-and `npx eleventy` have never actually been run against it. The structure and
-syntax follow standard, well-established Eleventy + Nunjucks + Decap CMS
-patterns, but **the very first thing to do is run it and fix whatever
-surfaces** — treat this as a strong first draft, not a verified build.
+`npm install` / `npm start` have been run for real. Along the way this fixed:
+a layout bug where page content never actually rendered into `base.njk`, a
+menu collection that returned zero items because `content/menu/` sits outside
+Eleventy's `src` input dir, and a mobile header that overflowed instead of
+collapsing into a menu (now a proper hamburger toggle below 780px). Decap CMS
+was confirmed end-to-end locally using its `local_backend` mode: admin panel
+loads, shows only the Menu collection, edits publish and land in
+`content/menu/*.md`, and Eleventy hot-rebuilds the page.
 
 ## Run it locally
 
@@ -19,10 +22,17 @@ npm install
 npm start
 ```
 
-This starts Eleventy's dev server (usually `http://localhost:8080`). If
-something errors on `npm install` or `npm start`, that's expected to be step
-one — paste the error into Claude Code (this project's `PROJECT_BRIEF.md`
-gives it full context) and get it fixed there.
+This starts Eleventy's dev server at `http://localhost:8080`.
+
+To test the `/admin` Decap CMS editor locally (no DecapBridge needed — this
+uses `local_backend: true` in `admin/config.yml`, which only activates on
+localhost), also run in a second terminal:
+
+```
+npx decap-server
+```
+
+Then open `http://localhost:8080/admin/` and click Login.
 
 ## Project structure
 
@@ -47,9 +57,28 @@ admin/             → Decap CMS config, scoped to the menu only
 They never see the design, other pages, or site settings — see
 `PROJECT_BRIEF.md` for why that boundary matters.
 
+## Deploying to Cloudflare Pages
+
+1. Push this repo to a **private** GitHub repo (see below).
+2. In the Cloudflare dashboard: Workers & Pages → Create → Pages → Connect
+   to Git → pick the repo.
+3. Build settings:
+   - Framework preset: none / Eleventy (if listed)
+   - Build command: `npx eleventy`
+   - Build output directory: `_site`
+4. No environment variables or secrets are needed for the site build itself.
+5. After the first deploy, set up DecapBridge (decapbridge.com/docs) pointed
+   at this repo/branch so `admin/config.yml`'s `git-gateway` backend has a
+   real auth provider in production — `local_backend: true` only kicks in
+   on localhost, so it won't interfere.
+6. Point the client's real domain at the Cloudflare Pages project.
+
+`netlify.toml` is left in the repo in case Netlify is used instead — either
+host works identically with this static Eleventy setup.
+
 ## Before this goes live for a real client
 
-- [ ] Run it locally, fix any build errors
+- [x] Run it locally, fix any build errors
 - [ ] Set up DecapBridge for this specific site (decapbridge.com)
 - [ ] Replace every value in `src/_data/site.json` with the real business's info
 - [ ] Replace placeholder images/video in `media/` with the real business's
@@ -57,7 +86,7 @@ They never see the design, other pages, or site settings — see
 - [ ] Replace `googleMapsEmbedSrc` in site.json with their real Maps embed
 - [ ] Replace the placeholder contact form with a real embedded Google Form
 - [ ] Push to a **private** GitHub repo
-- [ ] Connect that repo to Netlify or Cloudflare Pages
+- [ ] Connect that repo to Cloudflare Pages
 - [ ] Point their real domain at it, register in the client's name
 
 ## Cloning this for the next client
