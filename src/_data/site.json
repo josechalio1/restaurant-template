@@ -33,9 +33,9 @@
   },
   "hero": {
     "type": "image",
-    "image": "/media/hero.jpg",
+    "image": "/media/hero.webp",
     "video": "/media/hero.mp4",
-    "poster": "/media/hero-poster.jpg",
+    "poster": "/media/hero-poster.webp",
     "headline": "Low. Slow. Worth the wait.",
     "sub": "Post oak smoked meats and family recipes. No shortcuts."
   },

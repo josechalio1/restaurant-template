@@ -11,6 +11,10 @@
   --brick: #9c3b26;
   --ember: #d97a1f;
   --brass: #8a7346;
+  /* Lighter brass for text on --charcoal — plain --brass is 3.7:1 on
+     charcoal, under the 4.5:1 minimum. Only use --brass itself for
+     borders/decoration on light backgrounds. */
+  --brass-light: #b39a6a;
   --smoke: #6b5d4f;
   --paper: #f4ecda;
 
@@ -41,9 +45,17 @@ body {
 }
 
 a { color: inherit; text-decoration: none; }
+/* --charcoal passes 3:1 (WCAG 1.4.11) against the site's light backgrounds.
+   On charcoal itself (header/footer/dark sections) that would be invisible,
+   so those contexts override to --paper, which passes 3:1 there instead. */
 a:focus-visible, button:focus-visible {
-  outline: 3px solid var(--ember);
+  outline: 3px solid var(--charcoal);
   outline-offset: 2px;
+}
+.site-header a:focus-visible, .site-header button:focus-visible,
+.site-footer a:focus-visible, .site-footer button:focus-visible,
+.section--dark a:focus-visible, .section--dark button:focus-visible {
+  outline-color: var(--paper);
 }
 
 img, video { max-width: 100%; display: block; }
@@ -121,7 +133,7 @@ h1, h2, h3 {
   font-size: 0.62rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--brass);
+  color: var(--brass-light);
 }
 .site-nav {
   display: flex;
@@ -218,6 +230,13 @@ h1, h2, h3 {
 .section { padding: 72px 0; }
 .section--dark { background: var(--charcoal); color: var(--paper); }
 .section--dark h2 { color: var(--paper); }
+/* Plain --brick eyebrow text is only 2.5:1 on --charcoal — under 4.5:1.
+   --ember passes at 5.4:1 and still reads as the same accent family. */
+.section--dark .eyebrow { color: var(--ember); }
+/* .btn--outline defaults to charcoal text + charcoal border, which is
+   invisible against this section's charcoal background until hover. */
+.section--dark .btn--outline { color: var(--paper); border-color: var(--paper); }
+.section--dark .btn--outline:hover { background: var(--paper); color: var(--charcoal); }
 .section-head { max-width: 640px; margin-bottom: 40px; }
 
 .info-grid {
@@ -287,10 +306,10 @@ h1, h2, h3 {
 .site-footer { background: var(--charcoal); color: var(--kraft); padding: 56px 0 24px; }
 .site-footer__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-bottom: 32px; }
 .site-footer__name { font-family: var(--font-display); font-weight: 700; color: var(--paper); font-size: 1.1rem; }
-.site-footer__label { font-family: var(--font-label); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; color: var(--brass); margin-bottom: 10px; }
+.site-footer__label { font-family: var(--font-label); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; color: var(--brass-light); margin-bottom: 10px; }
 .hours-list { list-style: none; padding: 0; margin: 0; }
 .hours-list li { display: flex; justify-content: space-between; padding: 3px 0; font-size: 0.92rem; }
-.site-footer__fine { border-top: 1px solid var(--charcoal-soft); padding-top: 20px; font-size: 0.8rem; color: var(--brass); }
+.site-footer__fine { border-top: 1px solid var(--charcoal-soft); padding-top: 20px; font-size: 0.8rem; color: var(--brass-light); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 780px) {
