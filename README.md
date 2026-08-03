@@ -4,16 +4,20 @@ A placeholder restaurant built as a reusable template. Static site (Eleventy)
 with a menu that the client can edit themselves through Decap CMS, without
 touching code.
 
-## Status: build-tested, runs locally, Decap CMS verified
+## Status: deployed, DecapBridge auth verified end-to-end
 
 `npm install` / `npm start` have been run for real. Along the way this fixed:
 a layout bug where page content never actually rendered into `base.njk`, a
 menu collection that returned zero items because `content/menu/` sits outside
 Eleventy's `src` input dir, and a mobile header that overflowed instead of
-collapsing into a menu (now a proper hamburger toggle below 780px). Decap CMS
-was confirmed end-to-end locally using its `local_backend` mode: admin panel
-loads, shows only the Menu collection, edits publish and land in
-`content/menu/*.md`, and Eleventy hot-rebuilds the page.
+collapsing into a menu (now a proper hamburger toggle below 780px).
+
+Live at https://hollow-oak-template.pages.dev, deployed from the private repo
+`josechalio1/josechalio1` via Cloudflare Pages (auto-deploys on push to
+`main`). DecapBridge is wired up for real: visiting `/admin/` in production,
+clicking Login, and completing DecapBridge's PKCE auth flow lands you
+straight in the Decap CMS editor scoped to exactly the Menu collection —
+confirmed working, not just configured.
 
 ## Run it locally
 
@@ -79,7 +83,7 @@ host works identically with this static Eleventy setup.
 ## Before this goes live for a real client
 
 - [x] Run it locally, fix any build errors
-- [ ] Set up DecapBridge for this specific site (decapbridge.com)
+- [x] Set up DecapBridge for this specific site (decapbridge.com)
 - [ ] Replace every value in `src/_data/site.json` with the real business's info
 - [ ] Replace placeholder images/video in `media/` with the real business's
       actual photos (never AI-generated food images — see PROJECT_BRIEF.md)
