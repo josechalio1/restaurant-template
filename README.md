@@ -1,8 +1,10 @@
-# Hollow Oak Smokehouse — website template
+# Restaurant Template
 
-A placeholder restaurant built as a reusable template. Static site (Eleventy)
-with a menu that the client can edit themselves through Decap CMS, without
-touching code.
+A reusable website template for restaurant/small-business clients. Static
+site (Eleventy) with a menu the client can edit themselves through Decap CMS,
+without touching code. Demoed here with a placeholder business, "Hollow Oak
+Smokehouse" — see [Cloning this for the next client](#cloning-this-for-the-next-client)
+for turning this into a real client's site.
 
 ## Status: deployed, DecapBridge auth verified end-to-end
 
@@ -13,7 +15,7 @@ Eleventy's `src` input dir, and a mobile header that overflowed instead of
 collapsing into a menu (now a proper hamburger toggle below 780px).
 
 Live at https://hollow-oak-template.pages.dev, deployed from the private repo
-`josechalio1/josechalio1` via Cloudflare Pages (auto-deploys on push to
+`josechalio1/restaurant-template` via Cloudflare Pages (auto-deploys on push to
 `main`). DecapBridge is wired up for real: visiting `/admin/` in production,
 clicking Login, and completing DecapBridge's PKCE auth flow lands you
 straight in the Decap CMS editor scoped to exactly the Menu collection —
