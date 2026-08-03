@@ -4,10 +4,22 @@
 
 backend:
   name: git-gateway
-  # DecapBridge stands in for Netlify's git-gateway here.
-  # Point this at your DecapBridge project once it's set up:
-  # https://decapbridge.com/docs
+  repo: josechalio1/josechalio1
   branch: main
+  auth_type: pkce
+  base_url: https://auth.decapbridge.com
+  auth_endpoint: /sites/32d6e105-92c3-4d4e-b306-afa1549db509/pkce
+  auth_token_endpoint: /sites/32d6e105-92c3-4d4e-b306-afa1549db509/token
+  gateway_url: https://gateway.decapbridge.com
+
+# See who did what
+commit_messages:
+  create: Create {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  update: Update {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  delete: Delete {{collection}} "{{slug}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  uploadMedia: Upload "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  deleteMedia: Delete "{{path}}" - {{author-name}} <{{author-login}}> via DecapBridge
+  openAuthoring: Message {{message}} - {{author-name}} <{{author-login}}> via DecapBridge
 
 # Only takes effect when the admin panel is opened on localhost — lets you
 # test the editor against this local git repo (via `npx decap-server`)
