@@ -11,6 +11,7 @@ module.exports = function (eleventyConfig) {
   // Static assets pass straight through to the output folder
   eleventyConfig.addPassthroughCopy("src/css");
   eleventyConfig.addPassthroughCopy("src/js");
+  eleventyConfig.addPassthroughCopy("src/robots.txt");
   eleventyConfig.addPassthroughCopy("media");
   eleventyConfig.addPassthroughCopy("admin");
 

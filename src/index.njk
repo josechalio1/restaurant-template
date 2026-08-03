@@ -27,7 +27,7 @@ title: Home
 <section class="section">
   <div class="wrap info-grid">
     <div class="info-card">
-      <h3>Hours</h3>
+      <h2>Hours</h2>
       <ul class="hours-list">
         {% for h in site.hours %}
         <li><span>{{ h.days }}</span><span>{{ h.time }}</span></li>
@@ -35,12 +35,12 @@ title: Home
       </ul>
     </div>
     <div class="info-card">
-      <h3>Find us</h3>
+      <h2>Find us</h2>
       <p>{{ site.address.street }}<br>{{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}</p>
       <p><a href="tel:{{ site.phoneHref }}">{{ site.phoneDisplay }}</a></p>
     </div>
     <div class="info-card">
-      <h3>Reservations</h3>
+      <h2>Reservations</h2>
       <p>Large parties and private events welcome.</p>
       <a href="{{ site.reserveLink }}" class="btn btn--outline">Reserve a table</a>
     </div>
