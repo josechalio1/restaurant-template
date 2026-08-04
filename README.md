@@ -101,3 +101,48 @@ Copy this whole folder, rename it, and change `src/_data/site.json` plus the
 files in `content/menu/`. Almost everything else — layout, CSS, page
 structure — should carry over untouched. That reuse is the entire point of
 having a template.
+
+## Re-theming a client (colors & fonts)
+
+Colors and fonts are config-driven via `site.json`'s `theme` object — no CSS
+editing needed. `style.css` still defines the fallback token values (they
+match Hollow Oak exactly), but `base.njk` injects an inline `:root` override
+built from `theme.colors`/`theme.fonts`/`theme.radius`, so a new palette or
+font pairing is a one-file edit.
+
+**Contrast-critical pairs — check these whenever you swap the palette**, since
+nothing enforces WCAG contrast automatically:
+- `theme.colors.ember` is used for eyebrow text on the dark `section--dark`
+  background and needs ≥4.5:1 against `theme.colors.charcoal`.
+- `theme.colors.brassLight` is used for header/footer label text on
+  `charcoal` and also needs ≥4.5:1 against it.
+- `theme.colors.smoke` is used for body copy on `kraftLight`/`paper` and
+  needs ≥4.5:1 against both.
+- The focus-outline colors (`charcoal` on light backgrounds, `paper` on
+  `charcoal`) need ≥3:1 (WCAG 1.4.11, non-text contrast).
+
+For `theme.fonts`, `family` is the exact ready-to-use `font-family` value
+(quotes included) and `googleSpec` is the matching Google Fonts URL segment
+— both need to agree on the same font name/weights.
+
+## WhatsApp ordering cart (optional, off by default)
+
+Set `site.json`'s `ordering.enabled` to `true` and fill in `whatsappNumber`
+(digits only, country code first) to turn on a cart: each menu item gets an
+"Add" button (plus a variant picker if that item's optional `variants`
+frontmatter field is set — a comma-separated string like
+`"BBQ, Búfalo, Mango Habanero"`), a floating cart button appears on every
+page, and `/menu/` gets a cart panel that builds a `wa.me` link summarizing
+the order for checkout. Cart state persists in `localStorage` across page
+navigations and reloads.
+
+This is a deliberate deviation from the original project brief, which
+excluded custom ordering — added because a real client (a WhatsApp-ordering
+business) needed it. It's fully opt-in: leave `ordering.enabled: false` and
+a client's menu page behaves exactly as it always has, with zero trace of
+cart code in the rendered HTML.
+
+Note: cart subtotals are a naive `quantity × price` and don't account for
+by-weight `unit` pricing (e.g. Hollow Oak's `"per lb"` items) — fine since a
+human reads the final WhatsApp message, but worth knowing before enabling
+ordering on a by-weight menu.

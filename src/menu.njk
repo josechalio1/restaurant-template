@@ -17,7 +17,7 @@ permalink: /menu/
     <div class="menu-category">
       <h2 class="menu-category__title">{{ category }}</h2>
       {% for item in items %}
-      <div class="menu-row">
+      <div class="menu-row"{% if site.ordering.enabled %} data-item-id="{{ item.data.slug }}" data-item-name="{{ item.data.title }}" data-item-price="{{ item.data.price }}"{% endif %}>
         <div>
           <div class="menu-row__name">{{ item.data.title }}</div>
           {% if item.data.description %}
@@ -25,9 +25,34 @@ permalink: /menu/
           {% endif %}
         </div>
         <div class="menu-row__price">${{ item.data.price }}{% if item.data.unit %} <span>{{ item.data.unit }}</span>{% endif %}</div>
+        {% if site.ordering.enabled %}
+        <div class="menu-row__order">
+          {% if item.data.variants %}
+          <select class="menu-row__variant" aria-label="Choose an option for {{ item.data.title }}">
+            {% for v in item.data.variants | splitList %}
+            <option value="{{ v }}">{{ v }}</option>
+            {% endfor %}
+          </select>
+          {% endif %}
+          <button type="button" class="btn btn--outline menu-row__add" data-add-to-cart>Add</button>
+        </div>
+        {% endif %}
       </div>
       {% endfor %}
     </div>
     {% endfor %}
+
+    {% if site.ordering.enabled %}
+    <div class="cart-panel" id="cart" data-cart-panel>
+      <h2>Your order</h2>
+      <div data-cart-empty class="cart-panel__empty">Your cart is empty. Add dishes from the menu above to get started.</div>
+      <div data-cart-lines></div>
+      <div class="cart-panel__total" data-cart-total hidden>
+        <span>Total</span>
+        <span data-cart-total-amount>$0</span>
+      </div>
+      <a class="btn btn--ticket cart-panel__whatsapp" data-cart-whatsapp-link href="#" hidden>Send order via WhatsApp</a>
+    </div>
+    {% endif %}
   </div>
 </section>

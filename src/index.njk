@@ -18,7 +18,7 @@ title: Home
     <h1 class="hero__headline">{{ site.hero.headline }}</h1>
     <p class="hero__sub">{{ site.hero.sub }}</p>
     <div class="hero__actions">
-      <a href="{{ site.orderLink }}" class="btn btn--ticket">Order online</a>
+      <a href="{% if site.ordering.enabled %}/menu/{% else %}{{ site.orderLink }}{% endif %}" class="btn btn--ticket">Order online</a>
       <a href="/menu/" class="btn btn--outline">See the menu</a>
     </div>
   </div>

@@ -47,3 +47,4 @@ collections:
       - { label: "Unit (optional)", name: "unit", widget: "string", required: false, hint: "e.g. 'per lb' or 'half rack' — leave blank if none" }
       - { label: "Description", name: "description", widget: "text", required: false }
       - { label: "Sort order within category", name: "order", widget: "number", default: 1 }
+      - { label: "Variants (optional)", name: "variants", widget: "string", required: false, hint: "Comma-separated options customers can pick, e.g. 'BBQ, Búfalo, Mango Habanero'. Leave blank if this item has no variants." }

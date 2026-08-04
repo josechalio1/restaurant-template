@@ -42,5 +42,31 @@
   "menuCategoryOrder": ["Smoked Meats", "Sandwiches", "Sides", "Drinks & Dessert"],
   "orderLink": "#",
   "reserveLink": "#",
-  "googleMapsEmbedSrc": "REPLACE_WITH_CLIENT_MAPS_EMBED_URL"
+  "googleMapsEmbedSrc": "REPLACE_WITH_CLIENT_MAPS_EMBED_URL",
+  "theme": {
+    "colors": {
+      "kraft": "#ddc79c",
+      "kraftLight": "#ece2c8",
+      "charcoal": "#241b14",
+      "charcoalSoft": "#382a1f",
+      "brick": "#9c3b26",
+      "ember": "#d97a1f",
+      "brass": "#8a7346",
+      "brassLight": "#b39a6a",
+      "smoke": "#6b5d4f",
+      "paper": "#f4ecda"
+    },
+    "radius": "2px",
+    "fonts": {
+      "display": { "family": "\"Fraunces\", Georgia, serif", "googleSpec": "Fraunces:ital,wght@0,600;0,700;1,600" },
+      "body": { "family": "\"Work Sans\", -apple-system, sans-serif", "googleSpec": "Work+Sans:wght@400;500" },
+      "label": { "family": "\"Oswald\", -apple-system, sans-serif", "googleSpec": "Oswald:wght@500;600" }
+    }
+  },
+  "ordering": {
+    "enabled": false,
+    "whatsappNumber": "",
+    "messageIntro": "Hi, I'd like to order:",
+    "messageOutro": "Thank you!"
+  }
 }

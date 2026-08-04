@@ -15,7 +15,7 @@
       <a href="/about/">About</a>
       <a href="/gallery/">Gallery</a>
       <a href="/contact/">Contact</a>
-      <a href="{{ site.orderLink }}" class="btn btn--ticket">Order</a>
+      <a href="{% if site.ordering.enabled %}/menu/{% else %}{{ site.orderLink }}{% endif %}" class="btn btn--ticket">Order</a>
     </nav>
   </div>
 </header>

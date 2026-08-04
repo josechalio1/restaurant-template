@@ -7,8 +7,26 @@
   <meta name="description" content="{{ description or site.hero.sub }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;0,700;1,600&family=Work+Sans:wght@400;500&family=Oswald:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family={{ site.theme.fonts.display.googleSpec }}&family={{ site.theme.fonts.body.googleSpec }}&family={{ site.theme.fonts.label.googleSpec }}&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/css/style.css">
+  <style>
+    :root {
+      --kraft: {{ site.theme.colors.kraft }};
+      --kraft-light: {{ site.theme.colors.kraftLight }};
+      --charcoal: {{ site.theme.colors.charcoal }};
+      --charcoal-soft: {{ site.theme.colors.charcoalSoft }};
+      --brick: {{ site.theme.colors.brick }};
+      --ember: {{ site.theme.colors.ember }};
+      --brass: {{ site.theme.colors.brass }};
+      --brass-light: {{ site.theme.colors.brassLight }};
+      --smoke: {{ site.theme.colors.smoke }};
+      --paper: {{ site.theme.colors.paper }};
+      --font-display: {{ site.theme.fonts.display.family | safe }};
+      --font-body: {{ site.theme.fonts.body.family | safe }};
+      --font-label: {{ site.theme.fonts.label.family | safe }};
+      --radius: {{ site.theme.radius }};
+    }
+  </style>
 
   <script type="application/ld+json">
   {
@@ -49,6 +67,22 @@
     {{ content | safe }}
   </main>
   {% include "footer.njk" %}
+  {% if site.ordering.enabled %}
+  <a href="/menu/#cart" class="cart-float" aria-label="View your order">
+    <span aria-hidden="true">🛒</span>
+    <span class="cart-badge" data-cart-count aria-live="polite" hidden>0</span>
+  </a>
+  {% endif %}
   <script src="/js/nav.js" defer></script>
+  {% if site.ordering.enabled %}
+  <script type="application/json" id="ordering-config">
+    {
+      "number": {{ site.ordering.whatsappNumber | dump | safe }},
+      "intro": {{ site.ordering.messageIntro | dump | safe }},
+      "outro": {{ site.ordering.messageOutro | dump | safe }}
+    }
+  </script>
+  <script src="/js/cart.js" defer></script>
+  {% endif %}
 </body>
 </html>

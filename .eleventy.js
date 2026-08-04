@@ -24,7 +24,13 @@ module.exports = function (eleventyConfig) {
     return fs
       .readdirSync(MENU_DIR)
       .filter((file) => file.endsWith(".md"))
-      .map((file) => matter(fs.readFileSync(path.join(MENU_DIR, file), "utf8")))
+      .map((file) => {
+        const parsed = matter(fs.readFileSync(path.join(MENU_DIR, file), "utf8"));
+        // Stable id for cart line items — title isn't guaranteed unique
+        // across categories, so the filename slug is used instead.
+        parsed.data.slug = file.replace(/\.md$/, "");
+        return parsed;
+      })
       .sort((a, b) => {
         const catA = categoryOrder.indexOf(a.data.category);
         const catB = categoryOrder.indexOf(b.data.category);
@@ -43,6 +49,16 @@ module.exports = function (eleventyConfig) {
       groups[cat].push(item);
     });
     return groups;
+  });
+
+  // Turns a menu item's optional "variants" frontmatter (a comma-separated
+  // string, e.g. "BBQ, Búfalo, Mango Habanero") into a clean array for the
+  // ordering cart's variant picker.
+  eleventyConfig.addFilter("splitList", function (str) {
+    return (str || "")
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean);
   });
 
   return {
