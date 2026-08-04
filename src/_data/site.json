@@ -11,7 +11,8 @@
     "street": "412 Kiln Street",
     "city": "Millbrook",
     "state": "TX",
-    "zip": "78660"
+    "zip": "78660",
+    "country": "US"
   },
   "hours": [
     { "days": "Tue–Fri", "time": "11:00 AM – 8:00 PM" },

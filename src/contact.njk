@@ -15,7 +15,9 @@ permalink: /contact/
         <h2>{{ site.businessName }}</h2>
         <p>{{ site.address.street }}<br>{{ site.address.city }}, {{ site.address.state }} {{ site.address.zip }}</p>
         <p><a href="tel:{{ site.phoneHref }}">{{ site.phoneDisplay }}</a></p>
+        {% if site.email %}
         <p><a href="mailto:{{ site.email }}">{{ site.email }}</a></p>
+        {% endif %}
 
         <!--
           Swap this iframe src for the client's real Google Maps embed URL
